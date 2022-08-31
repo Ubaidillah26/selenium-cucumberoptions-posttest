@@ -26,36 +26,36 @@ public class TestShopping {
 		
 	}
 	
-	@Given("^user navigate to web page$")
-	public void navigate_login() {
+	@Given("user navigate to web page")
+	public void user_navigate_to_web_page() {
 		driver = DriverSingleton.getDriver();
 		driver.get(Constant.URLPostTest);
 	}
 	
-	@When("^search \"([^\"]*)\" item")
-	public void search(String item) {
-		search.searchItem(item);
+	@When("search item")
+	public void search_item() {
+		search.searchItem("pink");
 	}
 	
-	@And("^add \"([^\"]*)\" item$")
-	public void addFirstItem(String item) {
-		placeOrder.detailProduct(item);
+	@And("add item")
+	public void add_item() {
+		placeOrder.detailProduct("pink");
 		placeOrder.checkOut();
 	}
 	
-	@When("^user filling billing detail$")
-	public void inputBillingDetail() {
+	@When("user filling billing detail")
+	public void user_filling_billing_detail() {
 		placeOrder.billingDetails();
 		placeOrder.terms();
 	}
 	
-	@And("^user place order$")
-	public void placeOrder() {
+	@And("user place order")
+	public void user_place_order() {
 		placeOrder.placeOrder();
 	}
 	
-	@Then("^validate \"([^\"]*)\" scenario$")
-	public void validate(String isValid) {
+	@Then("validate scenario")
+	public void validate_scenario(String isValid) {
 		if (isValid.equalsIgnoreCase(isValid)) {
 			String actual = placeOrder.getSuccessMessage();
 			assertTrue(actual.contains("Your order has been received"));
